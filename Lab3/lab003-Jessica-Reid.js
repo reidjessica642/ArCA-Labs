@@ -1,6 +1,6 @@
 // Jessica Reid
 // Date: 4/3/2026
-// Lab 3 - Vehhicles
+// Lab 3 - Vehicles
 // Started this one way too late because time decided to slip away
 
 const vehicles =
@@ -40,4 +40,28 @@ Total number of non-salvage vehicles of each year model, regardless of Make.
 
 /* 1. Create new arrays for each "Make" of vehicle.
     Each new array should only contain vehicles of the same make and the array variable should be named appropriately (EG: the array containing Ford vehicles should have a name similar to "Ford") */
-const makeArray = [];
+const makeArrays = {}; // empty object - assume we don't know the makes
+
+for (const vehicle of vehicles)
+{
+    // if makeArrays.MAKE exists:
+    if(makeArrays[vehicle.make])
+    {
+        // push the vehicle
+        makeArrays[vehicle.make].push(vehicle);
+    } else // if it does not exist
+    {
+        makeArrays[vehicle.make] = []; // empty
+        makeArrays[vehicle.make].push(vehicle); // now push
+    }
+}
+
+// each make has its own array now
+
+// use this for later...
+/*
+Object.keys(makeArrays).forEach((make) =>
+{
+  console.log(`\t${make}: ${makeArrays[make].length}`);
+});
+*/
