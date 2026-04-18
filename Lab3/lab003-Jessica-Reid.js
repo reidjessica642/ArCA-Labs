@@ -26,7 +26,6 @@ const salvageVINs =
 ]; 
 
 /*
-Order each new Make array by vehicle year in ascending order
 Add recall details from the recallList to each vehicle (based on VIN)
 Remove any vehicles that have a salvage title (based on VIN)
 Output each Make array to the console, ordered by year (from step 2), with recall details included (from step 3), and all salvaged vehicles removed (from step 4)
@@ -39,7 +38,7 @@ Total number of non-salvage vehicles of each year model, regardless of Make.
 */
 
 /* 1. Create new arrays for each "Make" of vehicle.
-    Each new array should only contain vehicles of the same make and the array variable should be named appropriately (EG: the array containing Ford vehicles should have a name similar to "Ford") */
+    - Each new array should only contain vehicles of the same make and the array variable should be named appropriately (EG: the array containing Ford vehicles should have a name similar to "Ford") */
 const makeArrays = {}; // empty object - assume we don't know the makes
 
 for (const vehicle of vehicles)
@@ -57,6 +56,19 @@ for (const vehicle of vehicles)
 }
 
 // each make has its own array now
+
+// 2. Order each new Make array by vehicle year in ascending order
+// sort by year specifically - just learned sed, that'd be helpful here (alas this is Javascript)!
+Object.keys(makeArrays).forEach((make) =>
+{
+  makeArrays[make].sort((a, b) =>
+  {
+    return a.year - b.year;
+  });
+});
+
+console.log(makeArrays);
+// years are accturately sorted by vehicle now
 
 // use this for later...
 /*
