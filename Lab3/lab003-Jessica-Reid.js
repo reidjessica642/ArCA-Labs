@@ -1,7 +1,7 @@
 // Jessica Reid
 // Date: 4/3/2026
 // Lab 3 - Vehicles
-// Started this one way too late because time decided to slip away
+// started this one way too late because time decided to slip away
 
 const vehicles =
 [
@@ -76,8 +76,6 @@ Object.keys(makeArrays).forEach((make) =>
 let totalSalvaged = 0; // for stats
 Object.keys(makeArrays).forEach((make) =>
 {
-    // if vin matches salvage title
-        // pop any matches
     // filter to keep only vehicles not included in salvageVINs
     const notSalvage = makeArrays[make].filter((vehicle) =>
     {
@@ -129,3 +127,31 @@ console.log(`Total number of vehicles processed : ${vehicles.length}`);
 });
 
 console.log(`Total number of vehicles removed due to salvage : ${totalSalvaged}`);
+
+console.log('Total (non-salvage) number of each year : ');
+
+// initialize a new object specifically years
+const allYears = {};
+
+Object.keys(makeArrays).forEach((make) =>
+{
+  makeArrays[make].forEach((vehicle) =>
+  {
+    const year = vehicle.year;
+
+    // if a year doesn't exist yet
+    if (!allYears[year])
+    {
+        allYears[year] = 0;
+    }
+
+    // increment for the year
+    allYears[year]++;
+  });
+});
+
+// finally output
+Object.keys(allYears).forEach((year) =>
+{
+  console.log(`\t${year}: ${allYears[year]}`);
+});
