@@ -25,16 +25,6 @@ const salvageVINs =
   '935f8245-8816-42cf-9ea6-594286e3df0d',
 ]; 
 
-/*
-Output each Make array to the console, ordered by year (from step 2), with recall details included (from step 3), and all salvaged vehicles removed (from step 4)
-Step 5 should be in an easy to read format - use new lines and tabs for formatting
-Output the following stats :
- - Total number of vehicles you started with
- - Total number of non-salvage vehicles of each Make
- - Total number of vehicles that were removed due to salvage
- - Total number of non-salvage vehicles of each year model, regardless of Make.
-*/
-
 /* 1. Create new arrays for each "Make" of vehicle.
     - Each new array should only contain vehicles of the same make and the array variable should be named appropriately (EG: the array containing
     Ford vehicles should have a name similar to "Ford") */
@@ -109,10 +99,21 @@ Object.keys(makeArrays).forEach((make) =>
 });
 // matching vins have been removed
 
-// use this for later...
-/*
-Object.keys(makeArrays).forEach((make) =>
+// 5. Output each Make array to the console, ordered by year (from step 2), with recall details included (from step 3), and all salvaged vehicles removed (from step 4)
+// 6. Step 5 should be in an easy to read format - use new lines and tabs for formatting
+// these steps are essentially combined
+
+/* 7. Output the following stats :
+ - Total number of vehicles you started with
+ - Total number of non-salvage vehicles of each Make
+ - Total number of vehicles that were removed due to salvage
+ - Total number of non-salvage vehicles of each year model, regardless of Make. */
+console.log(`Total number of vehicles processed : `);
+
+ console.log('Total (non-salvage) number of each make : ')
+ Object.keys(makeArrays).forEach((make) =>
 {
   console.log(`\t${make}: ${makeArrays[make].length}`);
 });
-*/
+
+console.log(`Total number of vehicles removed due to salvage : ${totalSalvaged}`);
