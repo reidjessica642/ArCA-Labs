@@ -102,13 +102,25 @@ Object.keys(makeArrays).forEach((make) =>
 // 5. Output each Make array to the console, ordered by year (from step 2), with recall details included (from step 3), and all salvaged vehicles removed (from step 4)
 // 6. Step 5 should be in an easy to read format - use new lines and tabs for formatting
 // these steps are essentially combined
+Object.keys(makeArrays).forEach((make) =>
+{
+  console.log(`\n${make} (model, year, vin, recallReason):`)
+
+  // iterate through the vehicles
+  makeArrays[make].forEach((vehicle) =>
+  {
+    console.log(`\t${vehicle.model}, ${vehicle.year}, ${vehicle.vin}, ${vehicle.recallReason}:`);
+  });
+});
+console.log(); // empty console.logs for blank newline
+console.log();
 
 /* 7. Output the following stats :
  - Total number of vehicles you started with
  - Total number of non-salvage vehicles of each Make
  - Total number of vehicles that were removed due to salvage
  - Total number of non-salvage vehicles of each year model, regardless of Make. */
-console.log(`Total number of vehicles processed : `);
+console.log(`Total number of vehicles processed : ${vehicles.length}`);
 
  console.log('Total (non-salvage) number of each make : ')
  Object.keys(makeArrays).forEach((make) =>
