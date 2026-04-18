@@ -26,14 +26,13 @@ const salvageVINs =
 ]; 
 
 /*
-Remove any vehicles that have a salvage title (based on VIN)
 Output each Make array to the console, ordered by year (from step 2), with recall details included (from step 3), and all salvaged vehicles removed (from step 4)
 Step 5 should be in an easy to read format - use new lines and tabs for formatting
 Output the following stats :
-Total number of vehicles you started with
-Total number of non-salvage vehicles of each Make
-Total number of vehicles that were removed due to salvage
-Total number of non-salvage vehicles of each year model, regardless of Make.
+ - Total number of vehicles you started with
+ - Total number of non-salvage vehicles of each Make
+ - Total number of vehicles that were removed due to salvage
+ - Total number of non-salvage vehicles of each year model, regardless of Make.
 */
 
 /* 1. Create new arrays for each "Make" of vehicle.
@@ -72,9 +71,6 @@ Object.keys(makeArrays).forEach((make) =>
 // compare the vin #s, combine if they already exist
 Object.keys(makeArrays).forEach((make) =>
 {
-  // if makeArrays.make.vin exists
-    // combine vins
-  // else don't combine - doesn't need to be coded
   makeArrays[make].forEach((vehicle) =>
   {
     // find matching recalls before combine
@@ -84,9 +80,34 @@ Object.keys(makeArrays).forEach((make) =>
     vehicle.recallReason = recallMatch ? recallMatch.reason : 'N/A';
   });
 });
+// vins have been matched and recall reasons applied
 
-console.log("--- Current State of makeArrays (Sorted by Year with Recalls) ---");
-console.log(JSON.stringify(makeArrays, null, 2));
+// 4. Remove any vehicles that have a salvage title (based on VIN)
+let totalSalvaged = 0; // for stats
+Object.keys(makeArrays).forEach((make) =>
+{
+    // if vin matches salvage title
+        // pop any matches
+    // filter to keep only vehicles not included in salvageVINs
+    const notSalvage = makeArrays[make].filter((vehicle) =>
+    {
+        // have a variable hold included vins
+        const isSalvaged = salvageVINs.includes(vehicle.vin);
+
+        // add to totalSalvaged if included
+        if (isSalvaged)
+        {
+            totalSalvaged++;
+        }
+
+        // return vehicles not included in the salvage
+        return !isSalvaged;
+    });
+
+    // have makeArrays take in the non-salvages
+    makeArrays[make] = notSalvage;
+});
+// matching vins have been removed
 
 // use this for later...
 /*
