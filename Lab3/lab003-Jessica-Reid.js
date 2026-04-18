@@ -26,7 +26,6 @@ const salvageVINs =
 ]; 
 
 /*
-Add recall details from the recallList to each vehicle (based on VIN)
 Remove any vehicles that have a salvage title (based on VIN)
 Output each Make array to the console, ordered by year (from step 2), with recall details included (from step 3), and all salvaged vehicles removed (from step 4)
 Step 5 should be in an easy to read format - use new lines and tabs for formatting
@@ -38,7 +37,8 @@ Total number of non-salvage vehicles of each year model, regardless of Make.
 */
 
 /* 1. Create new arrays for each "Make" of vehicle.
-    - Each new array should only contain vehicles of the same make and the array variable should be named appropriately (EG: the array containing Ford vehicles should have a name similar to "Ford") */
+    - Each new array should only contain vehicles of the same make and the array variable should be named appropriately (EG: the array containing
+    Ford vehicles should have a name similar to "Ford") */
 const makeArrays = {}; // empty object - assume we don't know the makes
 
 for (const vehicle of vehicles)
@@ -54,7 +54,6 @@ for (const vehicle of vehicles)
         makeArrays[vehicle.make].push(vehicle); // now push
     }
 }
-
 // each make has its own array now
 
 // 2. Order each new Make array by vehicle year in ascending order
@@ -63,12 +62,31 @@ Object.keys(makeArrays).forEach((make) =>
 {
   makeArrays[make].sort((a, b) =>
   {
+    // return needs to be used here as the sort won't commence
     return a.year - b.year;
   });
 });
+// years are accurately sorted by vehicle now
 
-console.log(makeArrays);
-// years are accturately sorted by vehicle now
+// 3. Add recall details from the recallList to each vehicle (based on VIN)
+// compare the vin #s, combine if they already exist
+Object.keys(makeArrays).forEach((make) =>
+{
+  // if makeArrays.make.vin exists
+    // combine vins
+  // else don't combine - doesn't need to be coded
+  makeArrays[make].forEach((vehicle) =>
+  {
+    // find matching recalls before combine
+    const recallMatch = recallList.find(recall => recall.vin === vehicle.vin);
+
+    // combine
+    vehicle.recallReason = recallMatch ? recallMatch.reason : 'N/A';
+  });
+});
+
+console.log("--- Current State of makeArrays (Sorted by Year with Recalls) ---");
+console.log(JSON.stringify(makeArrays, null, 2));
 
 // use this for later...
 /*
