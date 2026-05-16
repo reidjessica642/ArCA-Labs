@@ -1,11 +1,12 @@
 import express from 'express';
-import { ChickensController } from './controllers/cves.controller.js';
+import { ChickensController } from './controllers/chickens.controller.js';
 const app = express();
 const port = 3000;
 
 app.use(express.json());
 
 app.get('/api/v1/chickens', ChickensController.getChickens);
+app.get('/api/v1/chickens/:id', ChickensController.getChickenById);
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);
