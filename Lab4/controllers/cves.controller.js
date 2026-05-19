@@ -2,8 +2,11 @@ import { ChickensService } from '../services/chickens.service.js';
 import { logger } from '../utils/logger.js';
 
 export class ChickensController {
-  static getChickens = (req, res) => {
+  static getChickens = (req, res, next) => {
    logger.debug('ChickensController : getChickens()');
+
+   // FAKE AN ERROR :
+   throw new Error('boom');
     
     const result = ChickensService.getChickens();
     res.status(200).json(result);
@@ -27,8 +30,7 @@ export class ChickensController {
    logger.debug('ChickensController : createChicken()');
 
     const result = ChickensService.createChicken(req.body);
-    // TODO: UPDATE THIS
-    res.status(200).json(result);
+    res.status(201).json(result);
   }
 
   // replaceChicken
@@ -65,6 +67,6 @@ export class ChickensController {
       return;
     }
 
-    res.sendStatus(200);
+    res.sendStatus(204);
   }
 }
