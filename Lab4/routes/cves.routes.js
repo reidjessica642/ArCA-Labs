@@ -1,11 +1,11 @@
 import express from 'express';
-import { ChickensController } from '../controllers/chickens.controller.js';
+import { CvesController } from '../controllers/cves.controller.js';
 
-export const chickenRouter = express.Router();
+export const cveRouter = express.Router();
 
-chickenRouter.get('/', ChickensController.getChickens);
-chickenRouter.get('/:id', ChickensController.getChickenById);
-chickenRouter.post('/', ChickensController.createChicken);
-chickenRouter.put('/:id', ChickensController.replaceChicken);
-chickenRouter.patch('/:id', ChickensController.updateChicken);
-chickenRouter.delete('/:id', ChickensController.deleteChicken);
+chickenRouter.get('/', CvesController.getChickens);
+chickenRouter.get('/:id', CvesController.getChickenById);
+chickenRouter.post('/', CvesController.createChicken);
+chickenRouter.put('/:id', CvesController.replaceChicken);
+chickenRouter.patch('/:id', CvesController.updateChicken);
+chickenRouter.delete('/:id', CvesController.deleteChicken);

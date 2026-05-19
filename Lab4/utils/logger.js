@@ -15,12 +15,12 @@ const myFormat = printf(({ level, message, label, timestamp }) => {
 export const logger = createLogger({
   level,
   format: combine(
-    label({ label: 'CHICKENS-API' }),
+    label({ label: 'CVES-API' }),
     timestamp(),
     myFormat
   ),
   transports: [
     new transports.Console(),
-    new transports.File({ filename: 'chickens-api.log' }) // just single log for now, rotation won't be needed
+    new transports.File({ filename: 'cve-api.log' }) // just single log for now, rotation won't be needed
   ]
 });

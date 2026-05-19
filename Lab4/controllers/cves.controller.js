@@ -1,23 +1,20 @@
-import { ChickensService } from '../services/chickens.service.js';
+import { CvesService } from '../services/chickens.service.js';
 import { logger } from '../utils/logger.js';
 
-export class ChickensController {
+export class CvesController {
   static getChickens = (req, res, next) => {
-   logger.debug('ChickensController : getChickens()');
-
-   // FAKE AN ERROR :
-   throw new Error('boom');
+   logger.debug('CvesController : getChickens()');
     
-    const result = ChickensService.getChickens();
+    const result = CvesService.getChickens();
     res.status(200).json(result);
   };
 
   // getChickenById
   static getChickenById = (req, res) => {
     const id = req.params.id;
-   logger.debug(`ChickensController : getChickenById(${id})`);
+   logger.debug(`CvesController : getChickenById(${id})`);
 
-    const result = ChickensService.getChickenById(id);
+    const result = CvesService.getChickenById(id);
     if (result) {
       res.status(200).json(result);
     } else {
@@ -27,27 +24,27 @@ export class ChickensController {
 
   // createChicken
   static createChicken = (req, res) => {
-   logger.debug('ChickensController : createChicken()');
+   logger.debug('CvesController : createChicken()');
 
-    const result = ChickensService.createChicken(req.body);
+    const result = CvesService.createChicken(req.body);
     res.status(201).json(result);
   }
 
   // replaceChicken
   static replaceChicken = (req, res) => {
     const id = req.params.id;
-   logger.debug(`ChickensController : replaceChicken(${id})`);
+   logger.debug(`CvesController : replaceChicken(${id})`);
 
-    const result = ChickensService.replaceChicken(id, req.body);
+    const result = CvesService.replaceChicken(id, req.body);
     res.status(200).json(result);
   }
 
   // updateChicken
   static updateChicken = (req, res) => {
     const id = req.params.id;
-   logger.debug(`ChickensController : updateChicken(${id})`);
+   logger.debug(`CvesController : updateChicken(${id})`);
 
-    const result = ChickensService.updateChicken(id, req.body);
+    const result = CvesService.updateChicken(id, req.body);
     if (!result) {
       res.sendStatus(404);
       return;
@@ -59,9 +56,9 @@ export class ChickensController {
   // deleteChicken
   static deleteChicken = (req, res) => {
     const id = req.params.id;
-   logger.debug(`ChickensController : deleteChicken(${id})`);
+   logger.debug(`CvesController : deleteChicken(${id})`);
 
-    const result = ChickensService.deleteChicken(id);
+    const result = CvesService.deleteChicken(id);
     if (!result) {
       res.sendStatus(404);
       return;

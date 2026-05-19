@@ -27,23 +27,23 @@ let CHICKENS = [
   }
 ];
 
-export class ChickensRepository {
+export class CvesRepository {
   static getChickens = () => {
-   logger.debug('ChickensRepository: getChickens()');
+   logger.debug('CvesRepository: getChickens()');
 
     return CHICKENS;
   }
 
   // getChickenById
   static getChickenById = (id) => {
-   logger.debug(`ChickensRepository: getChickenById(${id})`);
+   logger.debug(`CvesRepository: getChickenById(${id})`);
 
     return CHICKENS.find(c => c.id === id);
   }
 
   // createChicken
   static createChicken = (newChicken) => {
-   logger.debug(`ChickensRepository: createChicken()`);
+   logger.debug(`CvesRepository: createChicken()`);
 
     CHICKENS.push(newChicken);
     return newChicken;
@@ -51,7 +51,7 @@ export class ChickensRepository {
 
   // replaceChicken
   static replaceChicken = (id, replaceChicken) => {
-   logger.debug(`ChickensRepository: replaceChicken()`);
+   logger.debug(`CvesRepository: replaceChicken()`);
 
     CHICKENS = CHICKENS.filter(c => c.id !== id);
     CHICKENS.push(replaceChicken);
@@ -61,7 +61,7 @@ export class ChickensRepository {
 
   // updateChicken
   static updateChicken = (id, updateChicken) => {
-   logger.debug(`ChickensRepository: updateChicken()`);
+   logger.debug(`CvesRepository: updateChicken()`);
 
     const chicken = CHICKENS.find(c => c.id === id);
 
@@ -79,7 +79,7 @@ export class ChickensRepository {
 
   // deleteChicken
   static deleteChicken = (id) => {
-   logger.debug(`ChickensRepository: deleteChicken()`);
+   logger.debug(`CvesRepository: deleteChicken()`);
 
     const originalSize = CHICKENS.length;
     CHICKENS = CHICKENS.filter(c => c.id !== id);

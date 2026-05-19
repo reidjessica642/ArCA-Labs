@@ -1,5 +1,5 @@
 import express from 'express';
-import { chickenRouter } from './routes/chickens.routes.js';
+import { cveRouter } from './routes/cves.routes.js';
 import { logger } from './utils/logger.js';
 import { errorHandlerMiddleware } from './middleware/errorHandler.middleware.js';
 
@@ -8,9 +8,10 @@ const port = 3000;
 
 app.use(express.json());
 
-// Error handler middleware - MUST BE THE LAST MIDDLEWARE
+// if adding more middleware, this should remain last
 app.use(errorHandlerMiddleware);
 
-app.listen(port, () => {
+app.listen(port, () => 
+{
     logger.info(`Example app listening at http://localhost:${port}`);
 });
