@@ -21,6 +21,6 @@ export const logger = createLogger({
   ),
   transports: [
     new transports.Console(),
-    //new transports.File({ filename: 'chickens-api.log' })
+    new transports.File({ filename: 'chickens-api.log' }) // just single log for now, rotation won't be needed
   ]
 });
