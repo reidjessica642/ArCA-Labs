@@ -1,6 +1,6 @@
 import { logger } from '../utils/logger.js';
 
-let CVES = [
+let CVES = [ //TODO: create actual uuids for mock data
   {
     id: '1',
     name: 'CVE-2026-24216',
