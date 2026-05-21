@@ -3,9 +3,9 @@ import { CvesController } from '../controllers/cves.controller.js';
 
 export const cveRouter = express.Router();
 
-chickenRouter.get('/', CvesController.getChickens);
-chickenRouter.get('/:id', CvesController.getChickenById);
-chickenRouter.post('/', CvesController.createChicken);
-chickenRouter.put('/:id', CvesController.replaceChicken);
-chickenRouter.patch('/:id', CvesController.updateChicken);
-chickenRouter.delete('/:id', CvesController.deleteChicken);
+cveRouter.get('/', CvesController.getCves);
+cveRouter.get('/:id', CvesController.getCveById);
+cveRouter.post('/', CvesController.createCve);
+cveRouter.put('/:id', CvesController.replaceCve);
+cveRouter.patch('/:id', CvesController.updateCve);
+cveRouter.delete('/:id', CvesController.deleteCve);
