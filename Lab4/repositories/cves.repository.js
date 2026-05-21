@@ -1,29 +1,38 @@
 import { logger } from '../utils/logger.js';
 
-let CHICKENS = [ //TODO: edit to match
+let CVES = [
   {
     id: '1',
-    name: 'Mack',
-    breed: 'White Leghorn',
-    weight: 1.5
+    name: 'CVE-2026-24216',
+    url: 'https://nvd.nist.gov/vuln/detail/CVE-2026-24216',
+    vulnType: [
+      'Arbitrary Code Execution',
+      'Data Tampering',
+      'Denial of Service'
+    ],
+    risk: 'High',
+    color: 'Red'
   },
   {
     id: '2',
-    name: 'EVOO',
-    breed: 'Rhode Island Red',
-    weight: 1.75
+    name: 'CVE-2026-6960',
+    url: 'https://app.opencve.io/cve/CVE-2026-6960',
+    vulnType: [
+      'Remote Code Execution'
+    ],
+    risk: 'Critical',
+    color: 'Red'
   },
   {
     id: '3',
-    name: 'Mango',
-    breed: 'Speckled Sussex',
-    weight: 2.2
-  },
-  {
-    id: '4',
-    name: 'Bagel',
-    breed: 'Black Star',
-    weight: 2.6
+    name: 'CVE-2026-45232',
+    url: 'https://nvd.nist.gov/vuln/detail/CVE-2026-45232',
+    vulnType: [
+      'Man In The Middle',
+      'Denial of Service'
+    ],
+    risk: 'Low',
+    color: 'Green'
   }
 ];
 
@@ -31,21 +40,21 @@ export class CvesRepository {
   static getCves = () => {
    logger.debug('CvesRepository: getCves()');
 
-    return CHICKENS;
+    return CVES;
   }
 
   // getCveById
   static getCveById = (id) => {
    logger.debug(`CvesRepository: getCveById(${id})`);
 
-    return CHICKENS.find(c => c.id === id);
+    return CVES.find(c => c.id === id);
   }
 
   // createCve
   static createCve = (newCve) => {
    logger.debug(`CvesRepository: createCve()`);
 
-    CHICKENS.push(newCve);
+    CVES.push(newCve);
     return newCve;
   }
 
@@ -53,8 +62,8 @@ export class CvesRepository {
   static replaceCve = (id, replaceCve) => {
    logger.debug(`CvesRepository: replaceCve()`);
 
-    CHICKENS = CHICKENS.filter(c => c.id !== id);
-    CHICKENS.push(replaceCve);
+    CVES = CVES.filter(c => c.id !== id);
+    CVES.push(replaceCve);
     
     return replaceCve;
   }
@@ -63,28 +72,28 @@ export class CvesRepository {
   static updateCve = (id, updateCve) => {
    logger.debug(`CvesRepository: updateCve()`);
 
-    const chicken = CHICKENS.find(c => c.id === id);
+    const cve = CVES.find(c => c.id === id);
 
-    if (!chicken) {
+    if (!cve) {
       return null;
     }
 
     Object.keys(updateCve).forEach((prop) => {
-      chicken[prop] = updateCve[prop];
+      cve[prop] = updateCve[prop];
     });
 
     
-    return chicken;
+    return cve;
   }
 
   // deleteCve
   static deleteCve = (id) => {
    logger.debug(`CvesRepository: deleteCve()`);
 
-    const originalSize = CHICKENS.length;
-    CHICKENS = CHICKENS.filter(c => c.id !== id);
+    const originalSize = CVES.length;
+    CVES = CVES.filter(c => c.id !== id);
     
-    if (originalSize === CHICKENS.length) {
+    if (originalSize === CVES.length) {
       return false;
     }
     return true;
