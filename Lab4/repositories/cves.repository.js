@@ -1,6 +1,6 @@
 import { logger } from '../utils/logger.js';
 
-let CHICKENS = [
+let CHICKENS = [ //TODO: edit to match
   {
     id: '1',
     name: 'Mack',
@@ -29,39 +29,39 @@ let CHICKENS = [
 
 export class CvesRepository {
   static getChickens = () => {
-   logger.debug('CvesRepository: getChickens()');
+   logger.debug('CvesRepository: getCves()');
 
     return CHICKENS;
   }
 
-  // getChickenById
-  static getChickenById = (id) => {
-   logger.debug(`CvesRepository: getChickenById(${id})`);
+  // getCveById
+  static getCveById = (id) => {
+   logger.debug(`CvesRepository: getCveById(${id})`);
 
     return CHICKENS.find(c => c.id === id);
   }
 
-  // createChicken
-  static createChicken = (newChicken) => {
-   logger.debug(`CvesRepository: createChicken()`);
+  // createCve
+  static createCve = (newCve) => {
+   logger.debug(`CvesRepository: createCve()`);
 
-    CHICKENS.push(newChicken);
-    return newChicken;
+    CHICKENS.push(newCve);
+    return newCve;
   }
 
-  // replaceChicken
-  static replaceChicken = (id, replaceChicken) => {
-   logger.debug(`CvesRepository: replaceChicken()`);
+  // replaceCve
+  static replaceCve = (id, replaceCve) => {
+   logger.debug(`CvesRepository: replaceCve()`);
 
     CHICKENS = CHICKENS.filter(c => c.id !== id);
-    CHICKENS.push(replaceChicken);
+    CHICKENS.push(replaceCve);
     
-    return replaceChicken;
+    return replaceCve;
   }
 
-  // updateChicken
-  static updateChicken = (id, updateChicken) => {
-   logger.debug(`CvesRepository: updateChicken()`);
+  // updateCve
+  static updateCve = (id, updateCve) => {
+   logger.debug(`CvesRepository: updateCve()`);
 
     const chicken = CHICKENS.find(c => c.id === id);
 
@@ -69,17 +69,17 @@ export class CvesRepository {
       return null;
     }
 
-    Object.keys(updateChicken).forEach((prop) => {
-      chicken[prop] = updateChicken[prop];
+    Object.keys(updateCve).forEach((prop) => {
+      chicken[prop] = updateCve[prop];
     });
 
     
     return chicken;
   }
 
-  // deleteChicken
-  static deleteChicken = (id) => {
-   logger.debug(`CvesRepository: deleteChicken()`);
+  // deleteCve
+  static deleteCve = (id) => {
+   logger.debug(`CvesRepository: deleteCve()`);
 
     const originalSize = CHICKENS.length;
     CHICKENS = CHICKENS.filter(c => c.id !== id);
