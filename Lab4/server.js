@@ -7,6 +7,7 @@ const app = express();
 const port = 3000;
 
 app.use(express.json());
+app.use('/api/v1/cves', cveRouter);
 
 // if adding more middleware, this should remain last
 app.use(errorHandlerMiddleware);
