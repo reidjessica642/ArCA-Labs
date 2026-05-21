@@ -3,45 +3,45 @@ import { CvesRepository } from '../repositories/cves.repository.js';
 import { logger } from '../utils/logger.js';
 
 export class CvesService {
-  static getChickens = () => {
-   logger.debug('CvesService: getChickens()');
-    return CvesRepository.getChickens();
+  static getCves = () => {
+   logger.debug('CvesService: getCves()');
+    return CvesRepository.getCves();
   }
 
-  // getChickenById
-  static getChickenById = (id) => {
-   logger.debug(`CvesService: getChickenById(${id})`);
-    return CvesRepository.getChickenById(id);
+  // getCveById
+  static getCveById = (id) => {
+   logger.debug(`CvesService: getCveById(${id})`);
+    return CvesRepository.getCveById(id);
   }
 
-  // createChicken
-  static createChicken = (newChicken) => {
-   logger.debug(`CvesService: createChicken()`);
+  // createCve
+  static createCve = (newCve) => {
+   logger.debug(`CvesService: createCve()`);
 
-    newChicken.id = uuid();
-    return CvesRepository.createChicken(newChicken);
+    newCve.id = uuid();
+    return CvesRepository.createCve(newCve);
   }
 
-  // replaceChicken
-  static replaceChicken = (id, replaceChicken) => {
-   logger.debug(`CvesService: replaceChicken()`);
+  // replaceCve
+  static replaceCve = (id, replaceCve) => {
+   logger.debug(`CvesService: replaceCve()`);
 
-    replaceChicken.id = id;
-    return CvesRepository.replaceChicken(id, replaceChicken);
+    replaceCve.id = id;
+    return CvesRepository.replaceCve(id, replaceCve);
   }
 
-  // updateChicken
-  static updateChicken = (id, updateChicken) => {
-   logger.debug(`CvesService: updateChicken()`);
+  // updateCve
+  static updateCve = (id, updateCve) => {
+   logger.debug(`CvesService: updateCve()`);
 
-    updateChicken.id = id;
-    return CvesRepository.updateChicken(id, updateChicken);
+    updateCve.id = id;
+    return CvesRepository.updateCve(id, updateCve);
   }
 
-  // deleteChicken
-  static deleteChicken = (id) => {
-   logger.debug(`CvesService: deleteChicken()`);
+  // deleteCve
+  static deleteCve = (id) => {
+   logger.debug(`CvesService: deleteCve()`);
 
-    return CvesRepository.deleteChicken(id);
+    return CvesRepository.deleteCve(id);
   }
 }

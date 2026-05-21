@@ -28,7 +28,7 @@ let CHICKENS = [ //TODO: edit to match
 ];
 
 export class CvesRepository {
-  static getChickens = () => {
+  static getCves = () => {
    logger.debug('CvesRepository: getCves()');
 
     return CHICKENS;
