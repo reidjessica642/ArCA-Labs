@@ -1,20 +1,20 @@
-import { CvesService } from '../services/chickens.service.js';
+import { CvesService } from '../services/cves.service.js';
 import { logger } from '../utils/logger.js';
 
 export class CvesController {
-  static getChickens = (req, res, next) => {
-   logger.debug('CvesController : getChickens()');
+  static getCves = (req, res, next) => {
+   logger.debug('CvesController : getCves()');
     
-    const result = CvesService.getChickens();
+    const result = CvesService.getCves();
     res.status(200).json(result);
   };
 
-  // getChickenById
-  static getChickenById = (req, res) => {
+  // getCveById
+  static getCveById = (req, res) => {
     const id = req.params.id;
-   logger.debug(`CvesController : getChickenById(${id})`);
+   logger.debug(`CvesController : getCveById(${id})`);
 
-    const result = CvesService.getChickenById(id);
+    const result = CvesService.getCveById(id);
     if (result) {
       res.status(200).json(result);
     } else {
@@ -22,29 +22,29 @@ export class CvesController {
     }
   };
 
-  // createChicken
-  static createChicken = (req, res) => {
-   logger.debug('CvesController : createChicken()');
+  // createCve
+  static createCve = (req, res) => {
+   logger.debug('CvesController : createCve()');
 
-    const result = CvesService.createChicken(req.body);
+    const result = CvesService.createCve(req.body);
     res.status(201).json(result);
   }
 
-  // replaceChicken
-  static replaceChicken = (req, res) => {
+  // replaceCve
+  static replaceCve = (req, res) => {
     const id = req.params.id;
-   logger.debug(`CvesController : replaceChicken(${id})`);
+   logger.debug(`CvesController : replaceCve(${id})`);
 
-    const result = CvesService.replaceChicken(id, req.body);
+    const result = CvesService.replaceCve(id, req.body);
     res.status(200).json(result);
   }
 
-  // updateChicken
-  static updateChicken = (req, res) => {
+  // updateCve
+  static updateCve = (req, res) => {
     const id = req.params.id;
-   logger.debug(`CvesController : updateChicken(${id})`);
+   logger.debug(`CvesController : updateCve(${id})`);
 
-    const result = CvesService.updateChicken(id, req.body);
+    const result = CvesService.updateCve(id, req.body);
     if (!result) {
       res.sendStatus(404);
       return;
@@ -53,12 +53,12 @@ export class CvesController {
     res.status(200).json(result);
   }
 
-  // deleteChicken
-  static deleteChicken = (req, res) => {
+  // deleteCve
+  static deleteCve = (req, res) => {
     const id = req.params.id;
-   logger.debug(`CvesController : deleteChicken(${id})`);
+   logger.debug(`CvesController : deleteCve(${id})`);
 
-    const result = CvesService.deleteChicken(id);
+    const result = CvesService.deleteCve(id);
     if (!result) {
       res.sendStatus(404);
       return;
