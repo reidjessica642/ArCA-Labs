@@ -14,7 +14,7 @@ export const colorHandler = (req, res, next) => {
     // validation
     if (typeof req.body.color !== 'string') {
         res.status(400).json({
-            error: 'colorHandler: color property must be a string',
+            error: 'color property must be a string',
         });
         return;
     }
@@ -32,7 +32,7 @@ export const colorHandler = (req, res, next) => {
     } else {
         logger.warn(`colorHandler: unsupported color '${req.body.color}'`);
         res.status(400).json({
-            error: `colorHandler: color '${req.body.color}' is not supported - please use red, green, or blue`
+            error: `color '${req.body.color}' is not supported - please use red, green, or blue`
         });
         return;
     }
