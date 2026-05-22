@@ -11,8 +11,7 @@ let CVES = [
       'Denial of Service'
     ],
     risk: 'High',
-    color: 'Red',
-    hexColor: '#ff0000'
+    color: 'Red'
   },
   {
     id: 'd27005c0-6d7b-40a8-bd2b-7799cdd78138',
@@ -22,8 +21,7 @@ let CVES = [
       'Remote Code Execution'
     ],
     risk: 'Critical',
-    color: 'Red',
-    hexColor: '#ff0000'
+    color: 'Red'
   },
   {
     id: '973bab5d-d9a2-484d-a728-0aeb5024f5c9',
@@ -34,8 +32,7 @@ let CVES = [
       'Denial of Service'
     ],
     risk: 'Low',
-    color: 'Green',
-    hexColor: '#00ff00'
+    color: 'Green'
   }
 ];
 
