@@ -14,7 +14,7 @@ export const colorHandler = (req, res, next) => {
     // validation
     if (typeof req.body.color !== 'string') {
         res.status(400).json({
-            error: 'color property must be a string',
+            error: 'colorHandler: color property must be a string',
         });
         return;
     }
