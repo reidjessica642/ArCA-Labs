@@ -32,7 +32,7 @@ export const colorHandler = (req, res, next) => {
     } else {
         logger.warn(`colorHandler: unsupported color '${req.body.color}'`);
         res.status(400).json({
-            error: `Color '${req.body.color}' is not supported. Please use red, green, or blue.`
+            error: `colorHandler: color '${req.body.color}' is not supported - please use red, green, or blue`
         });
         return;
     }
