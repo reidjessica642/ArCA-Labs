@@ -2,19 +2,19 @@ import { CvesService } from '../services/cves.service.js';
 import { logger } from '../utils/logger.js';
 
 export class CvesController {
-  static getCves = (req, res, next) => {
+  static getCves = async (req, res, next) => {
    logger.debug('CvesController : getCves()');
     
-    const result = CvesService.getCves();
+    const result = await CvesService.getCves();
     res.status(200).json(result);
   };
 
   // getCveById
-  static getCveById = (req, res) => {
+  static getCveById = async (req, res) => {
     const id = req.params.id;
    logger.debug(`CvesController : getCveById(${id})`);
 
-    const result = CvesService.getCveById(id);
+    const result = await CvesService.getCveById(id);
     if (result) {
       res.status(200).json(result);
     } else {
@@ -23,10 +23,10 @@ export class CvesController {
   };
 
   // createCve
-  static createCve = (req, res) => {
+  static createCve = async (req, res) => {
    logger.debug('CvesController : createCve()');
 
-    const result = CvesService.createCve(req.body);
+    const result = await CvesService.createCve(req.body);
     res.status(201).json(result);
   }
 

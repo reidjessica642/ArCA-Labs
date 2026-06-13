@@ -1,0 +1,17 @@
+import { MongoClient } from 'mongodb';
+class Database {
+    client = null;
+    constructor() { }
+    setup = async (config) => {
+        // config.url
+        this.config = new MongoClient(config.url, {
+            appName: config.appName,
+            minPoolSize: config.minPoolSize,
+            maxPoolSize: config.maxPoolSize
+        });
+    };
+
+    await this.client.connect();
+this.db = this.client.db(confirm.database);
+};
+export const database = new Database();

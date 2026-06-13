@@ -1,4 +1,6 @@
 import { logger } from '../utils/logger.js';
+import { database } from '../utils/database.js';
+import { Constants } from '../utils/constants.js';
 
 let CVES = [
   {
@@ -37,24 +39,33 @@ let CVES = [
 ];
 
 export class CvesRepository {
-  static getCves = () => {
+  static getCves = async () => {
    logger.debug('CvesRepository: getCves()');
 
-    return CVES;
+    return database.db.collection('cves').find({}, {
+      projection: {
+        _id: 0
+      }
+    }).toArray();
   }
 
   // getCveById
   static getCveById = (id) => {
    logger.debug(`CvesRepository: getCveById(${id})`);
 
-    return CVES.find(c => c.id === id);
+    return database.db.collection('cves').findOne({ id }, {
+      projection: {
+        _id: 0
+      }
+    });
   }
 
   // createCve
-  static createCve = (newCve) => {
+  static createCve = async (newCve) => {
    logger.debug(`CvesRepository: createCve()`);
 
-    CVES.push(newCve);
+    await database.db.collection('cves').insertOne(newChicken);
+    delete newCve._id;
     return newCve;
   }
 
