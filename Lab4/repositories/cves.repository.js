@@ -64,7 +64,7 @@ export class CvesRepository {
   static createCve = async (newCve) => {
    logger.debug(`CvesRepository: createCve()`);
 
-    await database.db.collection('cves').insertOne(newChicken);
+    await database.db.collection('cves').insertOne(newCve);
     delete newCve._id;
     return newCve;
   }

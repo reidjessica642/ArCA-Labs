@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 const url = 'mongodb://127.0.0.1:27017';
 const client = new MongoClient(url, {
-  appName: 'ChickensAPI',
+  appName: 'CvesAPI',
   minPoolSize: 2,
   maxPoolSize: 10
 });
