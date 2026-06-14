@@ -98,15 +98,13 @@ export class CvesRepository {
   }
 
   // deleteCve
-  static deleteCve = (id) => {
-   logger.debug(`CvesRepository: deleteCve()`);
+  static deleteCve = async (id) => {
+    logger.debug(`CvesRepository: deleteCve()`);
 
-    const originalSize = CVES.length;
-    CVES = CVES.filter(c => c.id !== id);
-    
-    if (originalSize === CVES.length) {
-      return false;
-    }
-    return true;
+    const result = await database.db.collection(Constants.CVES_COLLECTION).deleteOne({
+      id, //id: id
+    });
+
+    return result.deletedCount === 0 ? false : true;
   }
 }

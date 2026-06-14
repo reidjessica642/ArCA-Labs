@@ -33,9 +33,14 @@ export class CvesController {
   // replaceCve
   static replaceCve = (req, res) => {
     const id = req.params.id;
-   logger.debug(`CvesController : replaceCve(${id})`);
+    logger.debug(`CvesController : replaceCve(${id})`);
 
-    const result = CvesService.replaceCve(id, req.body);
+    const result = await CvesService.replaceCve(id, req.body);
+    if (!result) {
+      res.sendStatus(404);
+      return;
+    }
+
     res.status(200).json(result);
   }
 
@@ -58,7 +63,7 @@ export class CvesController {
     const id = req.params.id;
    logger.debug(`CvesController : deleteCve(${id})`);
 
-    const result = CvesService.deleteCve(id);
+    const result = await CvesService.deleteCve(id);
     if (!result) {
       res.sendStatus(404);
       return;
