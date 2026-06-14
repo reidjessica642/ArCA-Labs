@@ -1,101 +1,89 @@
 import { logger } from '../utils/logger.js';
-
-let CVES = [
-  {
-    id: 'bac705c6-dbcb-4512-ad71-ee0dd765b7c7',
-    name: 'CVE-2026-24216',
-    url: 'https://nvd.nist.gov/vuln/detail/CVE-2026-24216',
-    tags: [
-      'Arbitrary Code Execution',
-      'Data Tampering',
-      'Denial of Service'
-    ],
-    risk: 'High',
-    color: 'Red'
-  },
-  {
-    id: 'd27005c0-6d7b-40a8-bd2b-7799cdd78138',
-    name: 'CVE-2026-6960',
-    url: 'https://app.opencve.io/cve/CVE-2026-6960',
-    tags: [
-      'Remote Code Execution'
-    ],
-    risk: 'Critical',
-    color: 'Red'
-  },
-  {
-    id: '973bab5d-d9a2-484d-a728-0aeb5024f5c9',
-    name: 'CVE-2026-45232',
-    url: 'https://nvd.nist.gov/vuln/detail/CVE-2026-45232',
-    tags: [
-      'Man In The Middle',
-      'Denial of Service'
-    ],
-    risk: 'Low',
-    color: 'Green'
-  }
-];
+import { database } from '../utils/database.js';
+import { Constants } from '../utils/constants.js';
 
 export class CvesRepository {
-  static getCves = () => {
-   logger.debug('CvesRepository: getCves()');
+  static getCves = async () => {
+    logger.debug('CvesRepository: getCves()');
 
-    return CVES;
+    return database.db.collection('cves').find({}, {
+      projection: {
+        _id: 0
+      }
+    }).toArray();
   }
 
   // getCveById
   static getCveById = (id) => {
-   logger.debug(`CvesRepository: getCveById(${id})`);
+    logger.debug(`CvesRepository: getCveById(${id})`);
 
-    return CVES.find(c => c.id === id);
+    return database.db.collection('cves').findOne({ id }, {
+      projection: {
+        _id: 0
+      }
+    });
   }
 
   // createCve
-  static createCve = (newCve) => {
-   logger.debug(`CvesRepository: createCve()`);
+  static createCve = async (newCve) => {
+    logger.debug(`CvesRepository: createCve()`);
 
-    CVES.push(newCve);
+    await database.db.collection('cves').insertOne(newCve);
+    delete newCve._id;
     return newCve;
   }
 
   // replaceCve
-  static replaceCve = (id, replaceCve) => {
-   logger.debug(`CvesRepository: replaceCve()`);
+  static replaceCve = async (id, replaceCve) => {
+    logger.debug(`CvesRepository: replaceCve()`);
 
-    CVES = CVES.filter(c => c.id !== id);
-    CVES.push(replaceCve);
-    
+    const result = await database.db.collection(Constants.CVES_COLLECTION).replaceOne({
+      id,
+    }, replaceCve);
+
+    if (result.matchedCount === 0) {
+      return false;
+    }
+
     return replaceCve;
   }
 
   // updateCve
-  static updateCve = (id, updateCve) => {
-   logger.debug(`CvesRepository: updateCve()`);
+  static updateCve = async (id, updateCve) => {
+    logger.debug(`CvesRepository: updateCve()`);
 
-    const cve = CVES.find(c => c.id === id);
+    const updateStatement = {
+      $set: {},
+    };
 
-    if (!cve) {
-      return null;
-    }
-
-    Object.keys(updateCve).forEach((prop) => {
-      cve[prop] = updateCve[prop];
+    Object.keys(updateCve).forEach((key) => {
+      updateStatement.$set[key] = updateCve[key]; //name: updateCve.name
     });
 
-    
-    return cve;
+    const result = await database.db.collection(Constants.CVES_COLLECTION).findOneAndUpdate({
+      id,
+    },
+      updateStatement,
+      {
+        returnDocument: 'after',
+      }
+    );
+
+    if (result) {
+      delete result._id;
+    }
+
+    return result;
   }
 
   // deleteCve
-  static deleteCve = (id) => {
-   logger.debug(`CvesRepository: deleteCve()`);
+  static deleteCve = async (id) => {
+    logger.debug(`CvesRepository: deleteCve()`);
 
-    const originalSize = CVES.length;
-    CVES = CVES.filter(c => c.id !== id);
-    
-    if (originalSize === CVES.length) {
-      return false;
-    }
-    return true;
+    const result = await database.db.collection(Constants.CVES_COLLECTION).deleteOne({
+      id, //id: id
+    });
+
+    return result.deletedCount === 0 ? false : true;
   }
 }

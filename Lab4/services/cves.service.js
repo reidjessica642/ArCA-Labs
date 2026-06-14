@@ -1,6 +1,7 @@
 import { v4 as uuid } from 'uuid';
 import { CvesRepository } from '../repositories/cves.repository.js';
 import { logger } from '../utils/logger.js';
+import { database } from '../utils/database.js';
 
 export class CvesService {
   static getCves = () => {
