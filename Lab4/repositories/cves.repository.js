@@ -1,4 +1,3 @@
-import { ReturnDocument } from 'mongodb'; 
 import { logger } from '../utils/logger.js';
 import { database } from '../utils/database.js';
 import { Constants } from '../utils/constants.js';
@@ -66,7 +65,7 @@ export class CvesRepository {
     },
       updateStatement,
       {
-        ReturnDocument: 'after',
+        returnDocument: 'after',
       }
     );
 
