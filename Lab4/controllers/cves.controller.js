@@ -31,7 +31,7 @@ export class CvesController {
   }
 
   // replaceCve
-  static replaceCve = (req, res) => {
+  static replaceCve = async (req, res) => {
     const id = req.params.id;
     logger.debug(`CvesController : replaceCve(${id})`);
 
@@ -45,11 +45,11 @@ export class CvesController {
   }
 
   // updateCve
-  static updateCve = (req, res) => {
+  static updateCve = async (req, res) => {
     const id = req.params.id;
    logger.debug(`CvesController : updateCve(${id})`);
 
-    const result = CvesService.updateCve(id, req.body);
+    const result = await CvesService.updateCve(id, req.body);
     if (!result) {
       res.sendStatus(404);
       return;
