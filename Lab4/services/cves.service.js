@@ -17,7 +17,7 @@ export class CvesService {
 
   // createCve
   static createCve = (newCve) => {
-   logger.debug(`CvesService: createCve()`);
+   logger.debug('CvesService: createCve()');
 
     newCve.id = uuid();
     return CvesRepository.createCve(newCve);
@@ -25,7 +25,7 @@ export class CvesService {
 
   // replaceCve
   static replaceCve = (id, replaceCve) => {
-   logger.debug(`CvesService: replaceCve()`);
+   logger.debug('CvesService: replaceCve()');
 
     replaceCve.id = id;
     return CvesRepository.replaceCve(id, replaceCve);
@@ -33,7 +33,7 @@ export class CvesService {
 
   // updateCve
   static updateCve = (id, updateCve) => {
-   logger.debug(`CvesService: updateCve()`);
+   logger.debug('CvesService: updateCve()');
 
     updateCve.id = id;
     return CvesRepository.updateCve(id, updateCve);
@@ -41,7 +41,7 @@ export class CvesService {
 
   // deleteCve
   static deleteCve = (id) => {
-   logger.debug(`CvesService: deleteCve()`);
+   logger.debug('CvesService: deleteCve()');
 
     return CvesRepository.deleteCve(id);
   }

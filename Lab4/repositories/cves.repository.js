@@ -26,7 +26,7 @@ export class CvesRepository {
 
   // createCve
   static createCve = async (newCve) => {
-    logger.debug(`CvesRepository: createCve()`);
+    logger.debug('CvesRepository: createCve()');
 
     await database.db.collection('cves').insertOne(newCve);
     delete newCve._id;
@@ -35,7 +35,7 @@ export class CvesRepository {
 
   // replaceCve
   static replaceCve = async (id, replaceCve) => {
-    logger.debug(`CvesRepository: replaceCve()`);
+    logger.debug('CvesRepository: replaceCve()');
 
     const result = await database.db.collection(Constants.CVES_COLLECTION).replaceOne({
       id,
@@ -50,7 +50,7 @@ export class CvesRepository {
 
   // updateCve
   static updateCve = async (id, updateCve) => {
-    logger.debug(`CvesRepository: updateCve()`);
+    logger.debug('CvesRepository: updateCve()');
 
     const updateStatement = {
       $set: {},
@@ -78,7 +78,7 @@ export class CvesRepository {
 
   // deleteCve
   static deleteCve = async (id) => {
-    logger.debug(`CvesRepository: deleteCve()`);
+    logger.debug('CvesRepository: deleteCve()');
 
     const result = await database.db.collection(Constants.CVES_COLLECTION).deleteOne({
       id, //id: id
