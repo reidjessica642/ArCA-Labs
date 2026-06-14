@@ -59,7 +59,7 @@ export class CvesController {
   }
 
   // deleteCve
-  static deleteCve = (req, res) => {
+  static deleteCve = async (req, res) => {
     const id = req.params.id;
    logger.debug(`CvesController : deleteCve(${id})`);
 
